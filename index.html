@@ -1,12 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles.css">
-    <title>/title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>DevClub - Convert Money</title>
 </head>
+
 <body>
-    
+   <main>
+        <img class="logo-img" src="./assets/images/logo.gif" alt="logo">
+        <section>
+            <div class="main-label">
+                <label for="convert-fron">Converter <b>de</b>
+                    <select id="convert-fron">
+                        <option selected id="convert-fron-real">R$ Real brasileiro</option>
+                        <option id="convert-fron-dolar">US$ Dólar americano</option>
+                        <option id="convert-fron-euro">€ Euro</option>
+                        <option id="convert-fron-libra">£ Libra</option>
+                        <option id="convert-fron-btcoin">₿ Bitcoin</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="main-label">
+                <label for="convert-to">Converter <b>para</b>
+                    <select id="convert-to">
+                        <option selected id="convert-to-dolar">US$ Dólar americano</option>
+                        <option id="convert-to-real">R$ Real brasileiro</option>
+                        <option id="convert-to-euro">€ Euro</option>
+                        <option id="convert-to-libra">£ Libra</option>
+                        <option id="convert-to-btcoin">₿ Bitcoin</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="main-label">
+                <label for="money-to-convert"><b>Valor</b>
+                    <input type="text" id="money-to-convert">
+                </label>
+            </div>
+
+            <button class="main-button">Converter</button>
+
+            <div class="box-1">
+                <div class="box-2">
+                    <div class="box-3">
+                        <figure><img class="figure-image" src="./assets/images/real.png" alt="actual-coin">
+                            <figcaption class="to-change-input-caption">Real</figcaption>
+                        </figure>
+                        <p class="to-change-input">R$ 1</p>
+                    </div>
+                    <img class="img-arrow" src="./assets/images/arrow.png" alt="arrow">
+                    <div class="box-3">
+                        <figure><img class="figure-image" src="./assets/images/dolar.png" alt="changed-coin">
+                            <figcaption class="changed-input-caption">Dólar americado</figcaption>
+                        </figure>
+                        <p class="changed-input">US$ 1</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
 </body>
+<script src="./js/script.js"></script>
+
 </html>

@@ -1,4 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 * {
     margin: 0;
-    padding-left: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+    box-sizing: border-box;
+    line-height: 15px;
+    font-size: 14px;
+}
+
+main {
+    width: 100vw;
+    height: 100vh;
+    background: rgb(138, 80, 252);
+}
+
+.main-label {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logo-img {
+    height: 20vh;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+section {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 2% 0 2%;
+    margin-top: 5px;
+    background: #ffffffe5;
+    width: 250px;
+    height: 75vh;
+    border-radius: 10px;
+}
+
+.to-change-input,
+.changed-input {
+    margin-bottom: 3px;
+    font-size: 16px;
+}
+
+p {
+    text-align: center;
+    font-weight: 700;
+}
+
+figcaption {
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: 700;
+    text-align: center;
+}
+
+.main-button:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.main-button:active {
+    opacity: 0.7;
+    color: rgb(224, 80, 75);
+}
+
+select,
+input {
+    width: 100%;
+    display: block;
+    background-color: #ffffff;
+}
+
+.main-button {
+    width: 100%;
+    background: rgb(110, 45, 180);
+    color: #ffffff;
+    margin: 0 0 5px 0;
+    padding: 4px;
+    border-radius: 5px;
+}
+
+select,
+input {
+    border-radius: 5px;
+    margin: 2px 0 8px 0;
+    padding: 4px;
+}
+
+.box-1 {
+    margin-top: 10px;
+    border-style: solid;
+    border-color: rgb(110, 45, 180);
+    border-width: 1.5px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.box-2 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+
+.box-3 {
+    margin: 4px 0;
+    width: 100%;
+}
+
+.figure-image {
+    width: 30%;
+}
+
+.img-arrow {
+    width: 20%;
+}
+
+@media screen and (max-width: 950px) {
+    .box-3 {
+        width: 90%;
+    }
+    .img-arrow {
+        width: 15%;
+        margin-right: 47%;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .box-3 {
+        width: 90%;
+        height: 15vh;
+    }
+    * {
+        font-size: 20px;
+    }
+    select,
+    input, .main-button {
+        margin: 5px 0 12px 0;
+        padding: 6px;
+    }
+    .figure-image {
+        width: 50%;
+    }
+    
+    .img-arrow {
+        width: 30%;
+        margin-right: 40%;
+    }
 }

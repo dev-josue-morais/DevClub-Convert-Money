@@ -9,9 +9,13 @@
     font-size: 14px;
 }
 
+.hidden-option {
+    display: none;
+}
+
 main {
     width: 100vw;
-    height: 100vh;
+    height: 110vh;
     background: rgb(138, 80, 252);
 }
 
@@ -42,7 +46,7 @@ section {
     margin-top: 5px;
     background: #ffffffe5;
     width: 250px;
-    height: 75vh;
+    height: 80vh;
     border-radius: 10px;
 }
 
@@ -129,6 +133,7 @@ input {
     .box-3 {
         width: 90%;
     }
+
     .img-arrow {
         width: 15%;
         margin-right: 47%;
@@ -137,23 +142,58 @@ input {
 
 @media screen and (max-width: 520px) {
     .box-3 {
-        width: 90%;
-        height: 15vh;
+        margin: 15px 0;
     }
+
     * {
         font-size: 20px;
     }
+
     select,
-    input, .main-button {
+    input,
+    .main-button {
         margin: 5px 0 12px 0;
         padding: 6px;
     }
+
     .figure-image {
         width: 50%;
     }
-    
+
     .img-arrow {
         width: 30%;
         margin-right: 40%;
+    }
+    section {
+        height: 107vh;
+    }
+    main {
+        height: 130vh;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .box-1 {
+        height: 51vh;
+    }
+
+    section {
+        height: 95vh;
+    }
+}
+
+@media screen and (max-height: 900px) and (max-width: 400px) {
+    main {
+        height: 120vh;
+    }
+
+    section {
+        height: 90vh;
+    }
+}
+
+@media screen and (max-height: 680px) and (max-width: 380px) {
+    section {
+        height: 95vh;
     }
 }

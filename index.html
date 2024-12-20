@@ -15,11 +15,11 @@
             <div class="main-label">
                 <label for="convert-fron">Converter <b>de</b>
                     <select id="convert-fron">
-                        <option selected id="convert-fron-real">R$ Real brasileiro</option>
-                        <option id="convert-fron-dolar">US$ Dólar americano</option>
-                        <option id="convert-fron-euro">€ Euro</option>
-                        <option id="convert-fron-libra">£ Libra</option>
-                        <option id="convert-fron-btcoin">₿ Bitcoin</option>
+                        <option value="BRL" selected>R$ Real brasileiro</option>
+                        <option value="USD">US$ Dólar americano</option>
+                        <option value="EUR">€ Euro</option>
+                        <option value="GBP">£ Libra</option>
+                        <option value="BTC">₿ Bitcoin</option>
                     </select>
                 </label>
             </div>
@@ -27,18 +27,18 @@
             <div class="main-label">
                 <label for="convert-to">Converter <b>para</b>
                     <select id="convert-to">
-                        <option selected id="convert-to-dolar">US$ Dólar americano</option>
-                        <option id="convert-to-real">R$ Real brasileiro</option>
-                        <option id="convert-to-euro">€ Euro</option>
-                        <option id="convert-to-libra">£ Libra</option>
-                        <option id="convert-to-btcoin">₿ Bitcoin</option>
+                        <option value="BRL">R$ Real brasileiro</option>
+                        <option value="USD" selected>US$ Dólar americano</option>
+                        <option value="EUR">€ Euro</option>
+                        <option value="GBP">£ Libra</option>
+                        <option value="BTC">₿ Bitcoin</option>
                     </select>
                 </label>
             </div>
 
             <div class="main-label">
                 <label for="money-to-convert"><b>Valor</b>
-                    <input type="text" id="money-to-convert">
+                    <input type="text" placeholder="10000" id="money-to-convert">
                 </label>
             </div>
 
@@ -47,17 +47,17 @@
             <div class="box-1">
                 <div class="box-2">
                     <div class="box-3">
-                        <figure><img class="figure-image" src="./assets/images/real.png" alt="actual-coin">
+                        <figure><img class="figure-image-fron" src="./assets/images/real.png" alt="actual-coin">
                             <figcaption class="to-change-input-caption">Real</figcaption>
                         </figure>
-                        <p class="to-change-input">R$ 1</p>
+                        <p class="to-change-input">R$ 100,00</p>
                     </div>
                     <img class="img-arrow" src="./assets/images/arrow.png" alt="arrow">
                     <div class="box-3">
-                        <figure><img class="figure-image" src="./assets/images/dolar.png" alt="changed-coin">
+                        <figure><img class="figure-image-to" src="./assets/images/dolar.png" alt="changed-coin">
                             <figcaption class="changed-input-caption">Dólar americado</figcaption>
                         </figure>
-                        <p class="changed-input">US$ 1</p>
+                        <p class="changed-input">US$ 0,00</p>
                     </div>
                 </div>
             </div>
@@ -65,6 +65,6 @@
     </main>
 
 </body>
-<script src="./js/script.js"></script>
+<script src="./js/scripts.js"></script>
 
 </html>

@@ -12,7 +12,6 @@ const figCapFron = document.querySelector(".to-change-input-caption");
 const figCapTo = document.querySelector(".changed-input-caption");
 const valueFron = document.querySelector(".to-change-input");
 const valueTo = document.querySelector(".changed-input");
-const finalValue = ""
 
 // Events
 input.addEventListener('input', () => { formatCurrency(); });
@@ -36,10 +35,12 @@ function changeSelect() {
 
 function formatCurrency() {
     const currency = selectFron.value;
-    let rawValue = input.value.replace(/[^\d]/g, "");
+    let rawValue = input.value.replace(/[^\d]/g, ""); // Remove caracteres não numéricos
 
+    // Armazena o valor bruto no dataset
     input.dataset.rawValue = rawValue;
 
+    // Formata o valor do input
     if (rawValue) {
         const formattedValue = new Intl.NumberFormat("pt-BR", {
             style: currency === "BTC" ? "decimal" : "currency",
@@ -50,9 +51,21 @@ function formatCurrency() {
 
         input.value = formattedValue;
     } else {
-        input.value = "";
+        input.value = ""; // Limpa o campo se estiver vazio
     }
-}
+
+    // Atualiza o placeholder
+    const place = 10000; // Exemplo fictício
+    const formattedPlace = new Intl.NumberFormat("pt-BR", {
+        style: currency === "BTC" ? "decimal" : "currency",
+        currency: currency === "BTC" ? undefined : currency,
+        minimumFractionDigits: 2,
+        maximumFractionDigits: currency === "BTC" ? 8 : 2,
+    }).format(currency === "BTC" ? place / 100000000 : place / 100);
+
+    input.placeholder = formattedPlace;
+}formatCurrency()
+
 input.addEventListener("input", () => {
     input.dataset.rawValue = input.value.replace(/[^\d]/g, "");
 });

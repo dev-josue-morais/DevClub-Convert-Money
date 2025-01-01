@@ -22,7 +22,7 @@ A ideia principal foi criar uma aplicação que:
 
 O projeto está publicado e você pode acessá-lo clicando no link abaixo:
 
-🔗 **[Convert Money - Página Funcional](https://josue28jrd.github.io/DevClub-Convert-Money/)**  
+🔗 **[Convert Money - Página Funcional](https://dev-josue-morais.github.io/DevClub-Convert-Money/)**  
 
 ---
 

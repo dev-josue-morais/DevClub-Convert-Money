@@ -33,38 +33,48 @@ function changeSelect() {
     if (optionToHideInFron) { optionToHideInFron.classList.add("hidden-option"); }
 } changeSelect();
 
+
 function formatCurrency() {
     const currency = selectFron.value;
-    let rawValue = input.value.replace(/[^\d]/g, ""); // Remove caracteres não numéricos
+    let rawValue = input.value.replace(/[^\d]/g, ""); // Remove tudo que não for número
 
-    // Armazena o valor bruto no dataset
-    input.dataset.rawValue = rawValue;
-
-    // Formata o valor do input
-    if (rawValue) {
-        const formattedValue = new Intl.NumberFormat("pt-BR", {
-            style: currency === "BTC" ? "decimal" : "currency",
-            currency: currency === "BTC" ? undefined : currency,
-            minimumFractionDigits: 2,
-            maximumFractionDigits: currency === "BTC" ? 8 : 2,
-        }).format(currency === "BTC" ? parseFloat(rawValue) / 100000000 : rawValue / 100);
-
-        input.value = formattedValue;
-    } else {
-        input.value = ""; // Limpa o campo se estiver vazio
+    // Se o campo de entrada estiver vazio ou contiver apenas zeros
+    if (!rawValue) {
+        input.value = "";  // Deixa o input vazio
+        input.placeholder = currency === "BTC" ? "0.00000001" : "R$ 0,01";
+        return;  // Sai da função sem fazer nada
     }
 
-    // Atualiza o placeholder
-    const place = 10000; // Exemplo fictício
-    const formattedPlace = new Intl.NumberFormat("pt-BR", {
-        style: currency === "BTC" ? "decimal" : "currency",
-        currency: currency === "BTC" ? undefined : currency,
-        minimumFractionDigits: 2,
-        maximumFractionDigits: currency === "BTC" ? 8 : 2,
-    }).format(currency === "BTC" ? place / 100000000 : place / 100);
+    if (currency === "BTC") {
+        while (rawValue.length < 8) {
+            rawValue = "0" + rawValue;
+        }
 
-    input.placeholder = formattedPlace;
-}formatCurrency()
+        const numericValue = parseFloat(rawValue) / 100000000;
+        input.value = numericValue.toFixed(8);
+
+        // Atualiza o placeholder para Bitcoin
+        input.placeholder = "0.00000001";
+    } else {
+        // Para outras moedas
+        const numericValue = parseFloat(rawValue) / 100;
+
+        if (!isNaN(numericValue)) {
+            input.value = new Intl.NumberFormat("pt-BR", {
+                style: "currency",
+                currency,
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }).format(numericValue);
+        } else {
+            input.value = ""; // Se o valor não for válido, limpa o input
+        }
+
+        input.placeholder = "R$ 0,01";
+    }
+}
+
+
 
 input.addEventListener("input", () => {
     input.dataset.rawValue = input.value.replace(/[^\d]/g, "");
@@ -75,14 +85,13 @@ input.addEventListener("blur", formatCurrency);
 // get values on central bank
 async function getQuotes() {
     try {
-        const resposta = await fetch(url);
-        const dados = await resposta.json();
+        const { USDBRL, EURBRL, GBPBRL, BTCBRL } = await (await fetch(url)).json();
         return {
             BRL: 1,
-            USD: parseFloat(dados.USDBRL.bid),
-            EUR: parseFloat(dados.EURBRL.bid),
-            GBP: parseFloat(dados.GBPBRL.bid),
-            BTC: parseFloat(dados.BTCBRL.bid),
+            USD: parseFloat(USDBRL.bid),
+            EUR: parseFloat(EURBRL.bid),
+            GBP: parseFloat(GBPBRL.bid),
+            BTC: parseFloat(BTCBRL.bid),
         };
     } catch (erro) {
         console.error("Erro ao buscar as cotações:", erro);
@@ -101,6 +110,9 @@ async function getQuotes() {
             BTC: { image: "./assets/images/bitcoin.png", caption: "Bitcoin", simbolo: "BTC" },
         };
 
+        // Define valores padrão para os selects se não houver valor selecionado
+        if (!selectFron.value) selectFron.value = "BRL";
+        if (!selectTo.value) selectTo.value = "USD";
         function formatValue(value, moeda) {
             if (moeda === "BTC") return `₿ ${value.toFixed(8)}`;
             return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: moeda }).format(value);
@@ -110,12 +122,20 @@ async function getQuotes() {
             const from = selectFron.value;
             const to = selectTo.value;
 
+            // Atribuindo imagens e legendas
             imageFron.src = coins[from].image;
             imageto.src = coins[to].image;
             figCapFron.innerHTML = coins[from].caption;
             figCapTo.innerHTML = coins[to].caption;
 
-            const inputValue = parseFloat(input.dataset.rawValue) / 100 || 0;
+            let inputValue = parseFloat(input.dataset.rawValue) || 0;
+
+            if (from === "BTC") {
+                inputValue = inputValue / 100000000;
+            } else {
+                inputValue = inputValue / 100;
+            }
+
             const convertedValue = (inputValue * quotes[from]) / quotes[to];
 
             valueFron.innerHTML = formatValue(inputValue, coins[from].simbolo);
@@ -125,5 +145,9 @@ async function getQuotes() {
         button.addEventListener("click", convertValues);
         selectFron.addEventListener("change", convertValues);
         selectTo.addEventListener("change", convertValues);
-    } convertValues()
+
+        convertValues();
+    }
 })();
+
+

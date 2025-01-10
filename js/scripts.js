@@ -149,5 +149,3 @@ async function getQuotes() {
         convertValues();
     }
 })();
-
-
